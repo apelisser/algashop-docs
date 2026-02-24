@@ -77,7 +77,7 @@ paths:
                       content:
                         type: array
                         items:
-                          $ref: '#/components/schemas/Customer'
+                          $ref: '#/components/schemas/CustomerSummary'
   /api/v1/customers/{customerId}:
     get:
       parameters:
@@ -215,6 +215,7 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetail'
+
   schemas:
     Customer:
       type: object
@@ -274,6 +275,40 @@ components:
           example: false
         address:
           $ref: '#/components/schemas/Address'
+
+    CustomerSummary:
+      type: object
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - phone
+        - bithDate
+        - archieved
+      properties:
+        id:
+          type: string
+          example: 'e6e4f7e9-4e9e-4d5d-9e6e-7e9e4f7e9e4f'
+        firstName:
+          type: string
+          example: 'John'
+        lastName:
+          type: string
+          example: 'Doe'
+        email:
+          type: string
+          example: 'john.doe@example.com'
+        phone:
+          type: string
+          example: '(11) 99999-9999'
+        bithDate:
+          type: string
+          format: date
+          example: '1991-07-05'
+        archieved:
+          type: boolean
+          example: false
 
     Address:
       type: object
