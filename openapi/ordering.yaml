@@ -16,10 +16,45 @@ paths:
       description: Register a new customer
       tags:
         - Customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerInput'
+      responses:
+        201:
+          description: Customer created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Resource address
+              example: '/api/v1/customers/e6e4f7e9-4e9e-4d5d-9e6e-7e9e4f7e9e4f'
+        400:
+          description: Bad request
+        409:
+          description: Conflict
+        422:
+          description: Unprocessable entity
+        500:
+          description: Internal server error
     get:
       description: List Customers
       tags:
         - Customers
+      responses:
+        200:
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
   /api/v1/customers/{customerId}:
     get:
       parameters:
@@ -32,6 +67,15 @@ paths:
       description: Get a single customer by id
       tags:
         - Customers
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        404:
+          description: Not found
     put:
       parameters:
         - schema:
@@ -43,6 +87,28 @@ paths:
       description: Edit customer
       tags:
         - Customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerUpdateInput'
+      responses:
+        200:
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        400:
+          description: Bad request
+        404:
+          description: Not found
+        409:
+          description: Conflict
+        422:
+          description: Unprocessable entity
+        500:
+          description: Internal server error
     delete:
       parameters:
         - schema:
@@ -54,7 +120,15 @@ paths:
       description: Delete customer
       tags:
         - Customers
-
+      responses:
+        204:
+          description: No content
+        404:
+          description: Not found
+        422:
+          description: Unprocessable entity
+        500:
+          description: Internal server error
 components:
   schemas:
     Customer:
