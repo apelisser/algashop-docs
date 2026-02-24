@@ -47,6 +47,23 @@ paths:
       description: List Customers
       tags:
         - Customers
+      parameters:
+        - name: document
+          in: query
+          required: false
+          schema:
+            type: string
+            example: '12345'
+        - name: email
+          in: query
+          required: false
+          schema:
+            type: string
+            example: 'john.doe@example.com'
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/size'
+        - $ref: '#/components/parameters/sort'
+        - $ref: '#/components/parameters/direction'
       responses:
         200:
           description: List of customers
@@ -135,7 +152,38 @@ paths:
           $ref: '#/components/responses/UnprocessableEntity'
         500:
           $ref: '#/components/responses/InternalError'
+
 components:
+  parameters:
+    page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 0
+    size:
+      name: size
+      in: query
+      required: false
+      schema:
+        type: integer
+        example: 5
+    sort:
+      name: sortByProperty
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'firstName'
+    direction:
+      name: sortDirection
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'desc'
+
   responses:
     NotFound:
       description: Resource not found
