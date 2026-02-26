@@ -620,7 +620,7 @@ components:
         - email
         - document
         - phone
-        - bithDate
+        - birthDate
         - promotionNotificationsAllowed
         - address
       properties:
@@ -649,7 +649,7 @@ components:
           example: '(11) 99999-9999'
           nullable: false
           x-validation: "notBlank"
-        bithDate:
+        birthDate:
           type: string
           format: date
           example: '1991-07-05'
