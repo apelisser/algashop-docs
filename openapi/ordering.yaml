@@ -192,6 +192,11 @@ paths:
       tags:
         - Orders
       parameters:
+        - name: status
+          in: query
+          required: false
+          schema:
+            $ref: '#/components/schemas/OrderStatus'
         - name: orderedDateFrom
           in: query
           required: false
