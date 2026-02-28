@@ -315,8 +315,12 @@ paths:
       tags:
         - ShoppingCarts
       responses:
-        204:
+        200:
           description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShoppingCart'
         404:
           $ref: '#/components/responses/NotFound'
     delete:
@@ -337,6 +341,13 @@ paths:
           $ref: '#/components/responses/NotFound'
   /api/v1/shopping-carts/{shoppingCartId}/items:
     post:
+      parameters:
+        - schema:
+            type: string
+          name: shoppingCartId
+          in: path
+          required: true
+          example: '277297bf-e586-4389-9f21-b3ce0c3f6580'
       description: Add an item to the shopping cart
       tags:
         - ShoppingCarts
@@ -372,9 +383,14 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ShoppingCartItem'
+                allOf:
+                  - $ref: '#/components/schemas/Page'
+                  - type: object
+                    properties:
+                      content:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/ShoppingCartItem'
         404:
           $ref: '#/components/responses/NotFound'
     delete:
