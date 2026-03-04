@@ -383,14 +383,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: '#/components/schemas/Page'
-                  - type: object
-                    properties:
-                      content:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/ShoppingCartItem'
+                $ref: '#/components/schemas/ShoppingCartItemList'
         404:
           $ref: '#/components/responses/NotFound'
     delete:
@@ -506,12 +499,12 @@ components:
         - email
         - document
         - phone
-        - bithDate
+        - birthDate
         - loyaltyPoints
         - registeredAt
         - archivedAt
         - promotionNotificationsAllowed
-        - archieved
+        - archived
         - address
       properties:
         id:
@@ -532,7 +525,7 @@ components:
         phone:
           type: string
           example: '(11) 99999-9999'
-        bithDate:
+        birthDate:
           type: string
           format: date
           example: '1991-07-05'
@@ -550,7 +543,7 @@ components:
         promotionNotificationsAllowed:
           type: boolean
           example: false
-        archieved:
+        archived:
           type: boolean
           example: false
         address:
@@ -563,8 +556,8 @@ components:
         - lastName
         - email
         - phone
-        - bithDate
-        - archieved
+        - birthDate
+        - archived
       properties:
         id:
           type: string
@@ -581,11 +574,11 @@ components:
         phone:
           type: string
           example: '(11) 99999-9999'
-        bithDate:
+        birthDate:
           type: string
           format: date
           example: '1991-07-05'
-        archieved:
+        archived:
           type: boolean
           example: false
     Address:
@@ -743,7 +736,7 @@ components:
       required:
         - number
         - size
-        - totalPage
+        - totalPages
         - totalElements
         - content
       properties:
@@ -753,7 +746,7 @@ components:
         size:
           type: integer
           example: 10
-        totalPage:
+        totalPages:
           type: integer
           example: 15
         totalElements:
@@ -990,7 +983,6 @@ components:
         - document
         - email
         - phone
-        - archived
       properties:
         id:
           type: string
@@ -1010,6 +1002,9 @@ components:
         phone:
           type: string
           example: "1191234564"
+        archived:
+          type: boolean
+          example: false
     OrderStatus:
       type: string
       example: "PLACED"
