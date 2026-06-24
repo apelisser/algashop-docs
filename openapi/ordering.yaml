@@ -1,7 +1,7 @@
 openapi: 3.0.4
 
 info:
-  title: Algashop - Ordering
+  title: AlgaShop - Ordering
   version: 1.0.0
 
 servers:
